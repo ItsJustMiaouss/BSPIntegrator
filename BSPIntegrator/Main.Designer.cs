@@ -150,7 +150,6 @@
             Name = "Main";
             ShowIcon = false;
             Text = "BSPIntegrator";
-            Load += Main_Load;
             ResumeLayout(false);
             PerformLayout();
         }

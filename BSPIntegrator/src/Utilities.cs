@@ -26,27 +26,56 @@ namespace BSPIntegrator.src
         }
 
         /// <summary>
-        ///  Gets the path to the Garry's Mod installation.
+        ///  Gets the path to BSPZip from the Garry's Mod folder.
         /// </summary>
         /// <returns>
-        ///   Path of the Garry's Mod's installation, or null if doesn't exists.
+        ///   Path of the BSPZip, or null if doesn't exists.
         /// </returns>
-        public static string? GetGarrysModPath()
+        public static string? GetBspZipPath()
         {
-            string? steamPath = GetSteamPath();
-            if (steamPath == null)
+            string? bspZipPath = Properties.Settings.Default.bspZipPath;
+            if (ValidateBspZipPath(bspZipPath)) return bspZipPath;
+
+            bspZipPath = GetSteamPath() + @"\steamapps\common\GarrysMod\bin\bspzip.exe";
+            if (ValidateBspZipPath(bspZipPath))
             {
-                return null;
-            }
-            // Check if the path is valid.
-            string garrysModPath = steamPath + @"\steamapps\common\GarrysMod\";
-            if (!Directory.Exists(garrysModPath))
+                Properties.Settings.Default.bspZipPath = bspZipPath;
+                Properties.Settings.Default.Save();
+                return bspZipPath;
+            };
+
+            bspZipPath = PromptForGmodPath() + @"\bin\bspzip.exe";
+            if (ValidateBspZipPath(bspZipPath))
             {
-                return null;
-            }
-            return garrysModPath;
+                Properties.Settings.Default.bspZipPath = bspZipPath;
+                Properties.Settings.Default.Save();
+                return bspZipPath;
+            };
+
+            MessageBox.Show("bspzip.exe cannot be found.", "Error");
+            Environment.Exit(0);
+            return null;
         }
 
+        private static string? PromptForGmodPath()
+        {
+            MessageBox.Show(@"bspzip.exe cannot be found. Please select the Garry's Mod path (...\steamapps\common\GarrysMod).", "Error");
+
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                return fbd.SelectedPath;
+            }
+
+            Environment.Exit(0);
+            return null;
+        }
+
+        public static bool ValidateBspZipPath(string path)
+        {
+            return File.Exists(path) && path.Contains("GarrysMod");
+        }
 
     }
 }

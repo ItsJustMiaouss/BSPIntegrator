@@ -5,48 +5,12 @@ namespace BSPIntegrator
 {
     public partial class Main : Form
     {
-        public string? BSPZipPath = Utilities.GetGarrysModPath() + @"\bin\bspzip.exe";
         public string? inputBSPPath, inputBSPFileName, outputBSPPath, contentFolderPath;
         public string bspIntegratorOutput = Path.GetTempPath() + @"\BSPIntegrator_output.txt";
 
         public Main()
         {
             InitializeComponent();
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-            if (Utilities.GetSteamPath() == null)
-            {
-                MessageBox.Show(@"Steam path not found. Please select the Garry's Mod path (steamapps\common\GarrysMod).", "Error");
-                if (!promptForGarrysModPath()) Environment.Exit(0);
-            }
-
-            if (Utilities.GetGarrysModPath() == null)
-            {
-                MessageBox.Show(@"Garry's Mod path not found. Please select the Garry's Mod path (steamapps\common\GarrysMod).", "Error");
-                if (!promptForGarrysModPath()) Environment.Exit(0);
-            }
-
-            // Check if bspzip.exe exists.
-            if (!File.Exists(BSPZipPath))
-            {
-                MessageBox.Show("bspzip.exe cannot be found. Please install Garry's Mod and make sure you are using the main branch.", "Error");
-                Environment.Exit(0);
-            }
-        }
-
-        private bool promptForGarrysModPath()
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                BSPZipPath = fbd.SelectedPath + @"\bin\bspzip.exe";
-                return true;
-            }
-
-            return false;
         }
 
         private async void SearchAllFiles(string directory)
@@ -76,7 +40,9 @@ namespace BSPIntegrator
 
         private void ExecuteBSPZIP()
         {
-            if (bspIntegratorOutput == null || !File.Exists(BSPZipPath))
+            string? bspZipPath = Utilities.GetBspZipPath();
+
+            if (bspIntegratorOutput == null || !File.Exists(bspZipPath))
             {
                 return;
             }
@@ -143,13 +109,7 @@ namespace BSPIntegrator
                 return;
             }
 
-            // dataGridView1.Rows.Clear();
             SearchAllFiles(contentFolderPath);
-
-
-
-            /*MessageBox.Show(bspZIPPath);
-            Process.Start("cmd.exe", @"/c pause");*/
         }
     }
 }
