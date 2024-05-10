@@ -51,7 +51,7 @@ namespace BSPIntegrator
             MessageBox.Show("BSPZip will execute this command:\n'" + command + "'");
 
             Process bspZIPProcess = new Process();
-            bspZIPProcess.StartInfo.FileName = BSPZipPath;
+            bspZIPProcess.StartInfo.FileName = bspZipPath;
             bspZIPProcess.StartInfo.Arguments = command;
             bspZIPProcess.Exited += BspZIPProcess_Exited;
             bspZIPProcess.Start();
