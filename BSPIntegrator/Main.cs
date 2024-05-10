@@ -24,7 +24,6 @@ namespace BSPIntegrator
             foreach (string absolutePath in filesEntry)
             {
                 string relativePath = absolutePath.Substring(directory.Length + 1); // +1 to remove the first "\"
-                // dataGridView1.Rows.Add(absolutePath, relativePath);
 
                 // BSPZip require to have a relative path and an absolute path.
                 lines.Add(relativePath);
@@ -48,18 +47,12 @@ namespace BSPIntegrator
             }
 
             string command = "-addlist " + inputBSPPath + " " + bspIntegratorOutput + " " + outputBSPPath;
-            MessageBox.Show("BSPZip will execute this command:\n'" + command + "'");
+            Console.WriteLine("BSPZip will execute this command:\n'" + command + "'");
 
             Process bspZIPProcess = new Process();
             bspZIPProcess.StartInfo.FileName = bspZipPath;
             bspZIPProcess.StartInfo.Arguments = command;
-            bspZIPProcess.Exited += BspZIPProcess_Exited;
             bspZIPProcess.Start();
-        }
-
-        private void BspZIPProcess_Exited(object? sender, EventArgs e)
-        {
-            MessageBox.Show("Okay!");
         }
 
         private void inputBSPButton_Click(object sender, EventArgs e)
