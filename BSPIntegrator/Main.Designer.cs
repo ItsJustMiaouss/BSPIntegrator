@@ -60,11 +60,13 @@
             // 
             // inputBSPTextbox
             // 
+            inputBSPTextbox.Enabled = false;
             inputBSPTextbox.Location = new Point(160, 52);
             inputBSPTextbox.Name = "inputBSPTextbox";
             inputBSPTextbox.ReadOnly = true;
             inputBSPTextbox.Size = new Size(499, 23);
             inputBSPTextbox.TabIndex = 2;
+            inputBSPTextbox.TabStop = false;
             // 
             // inputBSPButton
             // 
@@ -88,11 +90,13 @@
             // 
             // outputBSPTextbox
             // 
+            outputBSPTextbox.Enabled = false;
             outputBSPTextbox.Location = new Point(160, 177);
             outputBSPTextbox.Name = "outputBSPTextbox";
             outputBSPTextbox.ReadOnly = true;
             outputBSPTextbox.Size = new Size(499, 23);
             outputBSPTextbox.TabIndex = 5;
+            outputBSPTextbox.TabStop = false;
             // 
             // executeButton
             // 
@@ -125,11 +129,13 @@
             // 
             // contentFolderTextbox
             // 
+            contentFolderTextbox.Enabled = false;
             contentFolderTextbox.Location = new Point(160, 116);
             contentFolderTextbox.Name = "contentFolderTextbox";
             contentFolderTextbox.ReadOnly = true;
             contentFolderTextbox.Size = new Size(499, 23);
             contentFolderTextbox.TabIndex = 10;
+            contentFolderTextbox.TabStop = false;
             // 
             // Main
             // 
