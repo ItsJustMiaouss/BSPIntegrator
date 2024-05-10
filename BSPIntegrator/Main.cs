@@ -96,9 +96,21 @@ namespace BSPIntegrator
 
         private void executeButton_Click(object sender, EventArgs e)
         {
+            if (inputBSPFileName == null)
+            {
+                MessageBox.Show("Please select an input BSP file.", "Error");
+                return;
+            }
+
             if (contentFolderPath == null)
             {
                 MessageBox.Show("Please select a content folder.", "Error");
+                return;
+            }
+
+            if (outputBSPPath == null)
+            {
+                MessageBox.Show("Please select an output BSP file.", "Error");
                 return;
             }
 
