@@ -74,7 +74,7 @@ namespace BSPIntegrator
             sfd.AddExtension = true;
             sfd.DefaultExt = "bsp";
             sfd.Filter = "Binary Space Partition|*.bsp";
-            sfd.FileName = inputBSPFileName;
+            sfd.FileName = string.IsNullOrEmpty(inputBSPFileName) ? "output.bsp" : inputBSPFileName.Replace(".bsp", "_o.bsp");
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
