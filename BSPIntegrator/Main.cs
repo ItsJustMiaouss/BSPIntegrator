@@ -32,12 +32,12 @@ namespace BSPIntegrator
 
             await File.WriteAllLinesAsync(bspIntegratorOutput, lines.ToArray());
 
-            MessageBox.Show("Finished!");
+            await ExecuteBSPZIP();
 
-            ExecuteBSPZIP();
+            MessageBox.Show("Finished!");
         }
 
-        private void ExecuteBSPZIP()
+        private async Task ExecuteBSPZIP()
         {
             string? bspZipPath = Utilities.GetBspZipPath();
 
@@ -47,12 +47,13 @@ namespace BSPIntegrator
             }
 
             string command = "-addlist " + inputBSPPath + " " + bspIntegratorOutput + " " + outputBSPPath;
-            Console.WriteLine("BSPZip will execute this command:\n'" + command + "'");
+            MessageBox.Show("bspzip.exe will execute this command:\n'bspzip.exe " + command + "'");
 
             Process bspZIPProcess = new Process();
             bspZIPProcess.StartInfo.FileName = bspZipPath;
             bspZIPProcess.StartInfo.Arguments = command;
             bspZIPProcess.Start();
+            await bspZIPProcess.WaitForExitAsync().ConfigureAwait(false);
         }
 
         private void inputBSPButton_Click(object sender, EventArgs e)
