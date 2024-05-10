@@ -35,7 +35,6 @@
             outputBSPButton = new Button();
             outputBSPTextbox = new TextBox();
             executeButton = new Button();
-            settingsButton = new Button();
             contentFolderLabel = new Label();
             contentFolderButton = new Button();
             contentFolderTextbox = new TextBox();
@@ -105,16 +104,6 @@
             executeButton.UseVisualStyleBackColor = true;
             executeButton.Click += executeButton_Click;
             // 
-            // settingsButton
-            // 
-            settingsButton.Enabled = false;
-            settingsButton.Location = new Point(576, 5);
-            settingsButton.Name = "settingsButton";
-            settingsButton.Size = new Size(83, 23);
-            settingsButton.TabIndex = 7;
-            settingsButton.Text = "Settings";
-            settingsButton.UseVisualStyleBackColor = true;
-            // 
             // contentFolderLabel
             // 
             contentFolderLabel.AutoSize = true;
@@ -150,7 +139,6 @@
             Controls.Add(contentFolderTextbox);
             Controls.Add(contentFolderButton);
             Controls.Add(contentFolderLabel);
-            Controls.Add(settingsButton);
             Controls.Add(executeButton);
             Controls.Add(outputBSPTextbox);
             Controls.Add(outputBSPButton);
@@ -161,7 +149,6 @@
             MaximizeBox = false;
             Name = "Main";
             ShowIcon = false;
-            ShowInTaskbar = false;
             Text = "BSPIntegrator";
             Load += Main_Load;
             ResumeLayout(false);
@@ -177,7 +164,6 @@
         private Button outputBSPButton;
         private TextBox outputBSPTextbox;
         private Button executeButton;
-        private Button settingsButton;
         private Label contentFolderLabel;
         private Button contentFolderButton;
         private TextBox contentFolderTextbox;

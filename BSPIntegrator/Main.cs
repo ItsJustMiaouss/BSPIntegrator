@@ -16,19 +16,37 @@ namespace BSPIntegrator
 
         private void Main_Load(object sender, EventArgs e)
         {
-            // Check if Steam and Garry's Mod are installed.
-            if (Utilities.GetSteamPath() == null || Utilities.GetGarrysModPath() == null)
+            if (Utilities.GetSteamPath() == null)
             {
-                MessageBox.Show("Steam or Garry's Mod not found. Please install them before using this program.", "Error");
-                Environment.Exit(0);
+                MessageBox.Show(@"Steam path not found. Please select the Garry's Mod path (steamapps\common\GarrysMod).", "Error");
+                if (!promptForGarrysModPath()) Environment.Exit(0);
+            }
+
+            if (Utilities.GetGarrysModPath() == null)
+            {
+                MessageBox.Show(@"Garry's Mod path not found. Please select the Garry's Mod path (steamapps\common\GarrysMod).", "Error");
+                if (!promptForGarrysModPath()) Environment.Exit(0);
             }
 
             // Check if bspzip.exe exists.
             if (!File.Exists(BSPZipPath))
             {
-                MessageBox.Show("bspzip.exe cannot be found. Please install Garry's Mod (WITHOUT USING A BETA VERSION) before using this program.", "Error");
+                MessageBox.Show("bspzip.exe cannot be found. Please install Garry's Mod and make sure you are using the main branch.", "Error");
                 Environment.Exit(0);
             }
+        }
+
+        private bool promptForGarrysModPath()
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                BSPZipPath = fbd.SelectedPath + @"\bin\bspzip.exe";
+                return true;
+            }
+
+            return false;
         }
 
         private async void SearchAllFiles(string directory)
