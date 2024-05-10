@@ -38,6 +38,7 @@
             contentFolderLabel = new Label();
             contentFolderButton = new Button();
             contentFolderTextbox = new TextBox();
+            versionLabel = new Label();
             SuspendLayout();
             // 
             // inputBSPLabel
@@ -137,11 +138,22 @@
             contentFolderTextbox.TabIndex = 10;
             contentFolderTextbox.TabStop = false;
             // 
+            // versionLabel
+            // 
+            versionLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            versionLabel.AutoSize = true;
+            versionLabel.Location = new Point(12, 242);
+            versionLabel.Name = "versionLabel";
+            versionLabel.Size = new Size(98, 15);
+            versionLabel.TabIndex = 11;
+            versionLabel.Text = "unknown version";
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(671, 266);
+            Controls.Add(versionLabel);
             Controls.Add(contentFolderTextbox);
             Controls.Add(contentFolderButton);
             Controls.Add(contentFolderLabel);
@@ -156,6 +168,7 @@
             Name = "Main";
             ShowIcon = false;
             Text = "BSPIntegrator";
+            Load += Main_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -172,5 +185,6 @@
         private Label contentFolderLabel;
         private Button contentFolderButton;
         private TextBox contentFolderTextbox;
+        private Label versionLabel;
     }
 }

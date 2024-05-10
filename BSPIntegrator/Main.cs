@@ -1,5 +1,6 @@
 ﻿using BSPIntegrator.src;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace BSPIntegrator
 {
@@ -116,6 +117,12 @@ namespace BSPIntegrator
             }
 
             SearchAllFiles(contentFolderPath);
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            string? fileVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+            versionLabel.Text = fileVersion;
         }
     }
 }
