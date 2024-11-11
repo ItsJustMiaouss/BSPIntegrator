@@ -36,18 +36,23 @@ namespace BSPIntegrator.src
             string? bspZipPath = Properties.Settings.Default.bspZipPath;
             if (ValidateBspZipPath(bspZipPath)) return bspZipPath;
 
-            bspZipPath = GetSteamPath() + @"\steamapps\common\GarrysMod\bin\bspzip.exe";
+            string? gmodPath = GetSteamPath() + @"\steamapps\common\GarrysMod";
+
+            bspZipPath = gmodPath + @"\bin\bspzip.exe";
             if (ValidateBspZipPath(bspZipPath))
             {
                 Properties.Settings.Default.bspZipPath = bspZipPath;
+                Properties.Settings.Default.gmodPath = gmodPath;
                 Properties.Settings.Default.Save();
                 return bspZipPath;
             };
 
-            bspZipPath = PromptForGmodPath() + @"\bin\bspzip.exe";
+            gmodPath = PromptForGmodPath();
+            bspZipPath = gmodPath + @"\bin\bspzip.exe";
             if (ValidateBspZipPath(bspZipPath))
             {
                 Properties.Settings.Default.bspZipPath = bspZipPath;
+                Properties.Settings.Default.gmodPath = gmodPath;
                 Properties.Settings.Default.Save();
                 return bspZipPath;
             };

@@ -47,7 +47,9 @@ namespace BSPIntegrator
                 return;
             }
 
-            string command = "-addlist " + inputBSPPath + " " + bspIntegratorOutput + " " + outputBSPPath;
+            string gmodPath = Properties.Settings.Default.gmodPath + @"\garrysmod";
+            string command = $"-addlist {inputBSPPath} {bspIntegratorOutput} {outputBSPPath} -game {gmodPath}";
+
             MessageBox.Show("bspzip.exe will execute this command:\n'bspzip.exe " + command + "'");
 
             Process bspZIPProcess = new Process();
